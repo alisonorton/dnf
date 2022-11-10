@@ -1,0 +1,59 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DNF {
+
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        //Reading FIRST line
+        String line1 = s.nextLine();
+        //Getting the number of variables to calculate num rows of data
+        int numVars = line1.split(" ").length;
+        //Parsing the string into an array so we don't have to deal with
+        //spaces when looping through
+        String[] arrayLine1 = line1.split(" ");
+
+        int n = (int)Math.pow(2, numVars - 1); //number of rows
+        s.nextLine(); //Reading SECOND line
+        String dnf = ""; //String to store the DNF output
+        
+        
+        //Loop through each line and save it to String array
+        for(int i = 0; i < n; i++){
+            String[] data = s.nextLine().split(" ");
+           
+
+            if(data[data.length - 1].equals("1")){
+
+                for(int j = 0; j < numVars - 1; j++){
+
+                    //If the data is a 1 it's positive, so we add the variable name and a space
+                    if(data[j].equals("1")){
+                        dnf += arrayLine1[j] + " ";
+                    //If the data is a 0 it's negative, so we add the variable name, a space, and an apostrafy 
+                    } else if(data[j].equals("0")){
+                        dnf += arrayLine1[j] + "' ";
+                    }
+                }
+                //If we're at the end of our line of data and we're still parting we add a plus sign
+                if(i != n-1){
+                    dnf += "+ ";
+                } 
+
+
+                // else if(i == n-1 && data[data.length - 1].equals("0")){
+                //     System.out.println("END");
+                //     break;
+                // }
+                
+            }
+
+            
+        } 
+        s.close();
+        //Printing out the data
+        System.out.println(dnf);
+     
+    }
+}
