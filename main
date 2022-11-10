@@ -15,16 +15,20 @@ public class DNF {
         String[] arrayLine1 = line1.split(" ");
 
         int n = (int)Math.pow(2, numVars - 1); //number of rows
-        s.nextLine(); //Reading SECOND line
+        s.nextLine(); //Reading and ignoring SECOND line
         String dnf = ""; //String to store the DNF output
         
-        
+        int k  = 0;
         //Loop through each line and save it to String array
         for(int i = 0; i < n; i++){
             String[] data = s.nextLine().split(" ");
            
 
             if(data[data.length - 1].equals("1")){
+                //If this is not the first row with output 1 we've caculated, add a + before we calculate this row of data
+                if (k !=0){
+                    dnf += "+ ";
+                }
 
                 for(int j = 0; j < numVars - 1; j++){
 
@@ -36,16 +40,8 @@ public class DNF {
                         dnf += arrayLine1[j] + "' ";
                     }
                 }
-                //If we're at the end of our line of data and we're still parting we add a plus sign
-                if(i != n-1){
-                    dnf += "+ ";
-                } 
-
-
-                // else if(i == n-1 && data[data.length - 1].equals("0")){
-                //     System.out.println("END");
-                //     break;
-                // }
+   
+                k++;
                 
             }
 
